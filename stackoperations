@@ -1,0 +1,76 @@
+#include&lt;stdio.h&gt;
+int a[50], top = -1;
+void push(int n) {
+    int item;
+    if (top == n - 1) {
+        printf(&quot;Stack full\n&quot;);
+    } else {
+        printf(&quot;Enter the element to
+be added to Stack: &quot;);
+        scanf(&quot;%d&quot;, &amp;item);
+        top++;
+        a[top] = item;
+    }
+}
+void pop() {
+    if (top == -1) {
+        printf(&quot;Stack empty\n&quot;);
+    } else {
+        printf(&quot;%d is deleted\n&quot;, a[top]);
+        top--;
+    }
+}
+void peek() {
+    if (top == -1)
+        printf(&quot;Stack empty\n&quot;);
+    else
+        printf(&quot;Top element: %d\n&quot;, a[top]);
+}
+void display() {
+    int i = top;
+    if (top == -1) {
+        printf(&quot;Stack Empty\n&quot;);
+    } else {
+        while (i &gt;= 0) {
+            printf(&quot;%d\n&quot;, a[i]);
+            i--;
+        }
+    }
+}
+int main() {
+    int ch, x = 1, n, item;
+    printf(&quot;EBY J KAVUNGAL rollno:14\n&quot;);
+    printf(&quot;-----Stack operations-----\nEnter the total number of elements : &quot;);
+    scanf(&quot;%d&quot;, &amp;n);
+    do {
+        printf(&quot;Enter\n 1: Push op\n 2: Pop\n 3: Peek\n 4: Display\n&quot;);
+        scanf(&quot;%d&quot;, &amp;ch);
+
+        switch (ch) {
+            case 1: {
+                push(n);
+                break;
+            }
+            case 2: {
+                pop();
+                break;
+            }
+            case 3: {
+                peek();
+                break;
+            }
+            case 4: {
+                display();
+                break;
+            }
+            default: {
+                printf(&quot;Invalid choice\n&quot;);
+                break;
+            }
+        }
+        printf(&quot;Do you want to continue? yes:1 no:0 &quot;);
+        scanf(&quot;%d&quot;, &amp;x);
+        if (x==0){printf(&quot;Exitted the program..\n&quot;);}
+    } while (x == 1);
+    return 0;
+}
