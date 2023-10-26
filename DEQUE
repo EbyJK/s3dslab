@@ -1,0 +1,94 @@
+#include<stdio.h>
+void deletefront(int a[50],int,int);
+void display(int a[50],int ,int,int);
+void main(){
+int c,a[50],rear=0,front=0,f=1,n,item,i;
+printf("EBY J KAVUNGAL rollno:14\n");
+printf("Welcome to Dequeue Menu Driven Program\n");
+printf("Enter the number of element\n");
+scanf("%d",&n);
+while(f>0){
+        printf("Circular Queue Menu Driven Program\n");
+        printf("1.Insert at front\n2.Insert at rear\n3.Delete from front\n4.Delete from rear\n5.Display\n6.Exit\nEnter Your Choice:");
+        scanf("%d",&c);
+switch(c){
+case 1:
+if((rear+1)%n==front){
+printf("Dequeue Is Full\n\n");
+}
+else {
+ printf("Enter the element:\n");
+ scanf("%d",&item);
+ a[front]=item;
+ if(front==0){
+ front=n-1;
+}
+else{
+front=(front-1)%n;
+}}
+break;
+case 2:
+ if((rear+1)%n==front){
+ printf("Dequeue is full");}
+ else{
+ rear=(rear+1)%n;
+ printf("Enter the element:\n");
+ scanf("%d",&item);
+ a[rear]=item;}
+ 
+ break;
+case 3:
+if(front!=rear){
+ front=(front+1)%n;
+ }
+ deletefront(a,rear,front);
+ break;
+case 4:
+if(front==rear){
+    printf("Queue is empty!...\n\n");
+  }
+else{
+    if(rear==0){
+    item=a[rear];
+    rear=n-1;}
+    else{
+    item=a[rear];
+    rear=(rear-1)%n;}
+  printf("THE DELETED ELEMENT IS:%d\n\n",item);
+}
+break;
+case 5:
+display(a,rear,front,n);
+break;
+case 6:
+printf("Thank you.....\n");
+f=0;
+break;
+default:
+printf("ERROR>>>>>>Invalid choice\n");
+break;
+}
+}
+}
+void deletefront(int a[50],int rear,int front){
+int item;
+ if(front==rear){
+   printf("Queue is empty!...\n\n");
+   }
+ else{
+ item=a[front];
+ printf("THE DELETED ELEMENT IS:%d\n\n",item);
+ }
+}
+void display(int a[50],int rear,int front,int n){
+int i;
+if(front==rear){
+   printf("Queue is empty!...\n\n");
+   }
+else{
+ i=(front+1)%n;
+ while(i!=(rear+1)%n){
+ printf("%d\n",a[i]);
+ i=(i+1)%n;
+ 
+ }}}
