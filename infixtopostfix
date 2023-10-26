@@ -1,0 +1,164 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+ #define Size 100
+ char stak[30];
+ int top=-1,st[40],tope=-1;
+int empty(){
+    return top==-1;}
+ void push(char c){
+     if(top==(Size-1)){
+         printf("Stack is full");
+     }
+     else{
+         top++;
+         stak[top]=c;
+     }
+ }
+  void pushe(char c){
+     if(tope==(Size-1)){
+         printf("Stack is full");
+     }
+     else{
+         tope++;
+         st[tope]=c;
+     }
+ }
+ char peek(){
+     return stak[top];
+ }
+char pop()  
+    {  
+        if(top==-1)  
+            return -1;  
+     
+        char ch = stak[top];  
+        top--;  
+        return(ch);  
+    }
+int pope()  
+    {  int ch;
+        if(tope==-1)  {
+            return -1;  }
+        else{
+        ch = st[tope];  
+        tope--;  
+        return ch;}  
+    }  
+     
+int pre(char ch)  
+    {  
+        switch (ch)  
+        {  
+        case '+':  
+        case '-':  
+            return 1;  
+     
+        case '*':  
+        case '/':  
+            return 2;  
+     
+        case '^':  
+            return 3;  
+        }  
+        return -1;  
+}  
+
+void postfixevaluation(char * c){
+     int i=0,a,b,j;
+     double r;
+     
+     while (c[i]!='\0'){
+         if (c[i]>='0' && c[i]<='9'){
+             j=c[i]-'0';
+             pushe(j);}
+         else{
+             b=pope();
+             a=pope();
+            switch (c[i])  {  
+                case '+':  
+                        r=a+b;
+                        break;
+                case '-':  
+                        r=a-b;
+                        break;
+                case '*':  
+                        r=a*b;
+                        break;
+                case '/':  
+                        r=a/b;
+                        break;
+                case '^':
+                    r= pow(a, b);
+                    break;
+            }
+            pushe(r);
+             
+             
+         }
+         
+         i++;
+     }
+     }  
+ 
+ void infixtopostfix(char * c){
+     int i,j;
+     for(i=0,j=-1;c[i]!='$';++i){
+         if((c[i]>='a' && c[i]<='z')|| (c[i]>='A'&&c[i]<='Z')){
+             c[++j]=c[i];
+         }
+         else if(c[i]== '('){
+             push(c[i]);
+         }
+         else if (c[i]== ')')
+         {
+             while (!empty() && peek()!='('){
+                 c[++j] =pop(); }
+            if(!empty() && peek()!= '('){
+                continue;
+            }
+            else{
+                pop();
+            }
+         }
+         else{
+             while(!empty() && pre(c[i])<=pre(peek())){
+                 c[++j]=pop();
+             }
+             push(c[i]);
+         }
+     }
+    while (!empty()){  
+            c[++j] = pop();}
+    c[++j]='\0';
+    printf( "%s\n",c);  
+ }
+int main(){
+    int p=0,a;
+    char c[40];
+    printf("\nEBY J KAVUNGAL rollno:14\n");
+    while(p!=4){
+   
+    printf("\n-------------Menu--------\n1)Convert Infix To Postfix\n2)Evaluate Postfix\n3)Exit\nEnter the choice:\n");
+    scanf("%d", &p);
+    if(p == 1){
+        printf("Enter the expression to convert to postfix:");
+        scanf("%s", c);
+        infixtopostfix(c);
+    }
+    else if(p == 2){
+        printf("Enter the postfix expression to evaluate:");
+        scanf(" %[^\n]s",c);
+        postfixevaluation(c);
+        a=pope();
+        printf("%d\n",a);
+    }
+    else if(p == 3){
+        printf("eXitted the program....\n");
+        exit(0);
+    }
+       
+    }
+   
+    return 0;
+}
