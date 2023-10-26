@@ -1,145 +1,94 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
 
-#define n 4
+int front=0, rear=0, q[50];
 
-int Deque[n];
-int front = 0, rear = 0;
-
-int DequeEmpty() {
-    return (front == 0 && rear == 0);
+void enqueue (int n)
+{
+if ((rear+1)%n == front)
+{
+printf("Queue is  full\n");
+}
+else
+{
+rear= (rear+1)%n;
+printf("enter the element to be inserted : ");
+scanf("%d",&q[rear]);
+}
 }
 
-int DequeFull() {
-    return (front == rear + 1) || (front == 0 && rear == n - 1);
+void dequeue (int n)
+{
+if (front == rear)
+{
+printf("Queue is  empty\n");
+}
+else
+{
+front=(front+1)%n;
+printf("the deleted element is %d",q[front]);
+
+printf("\n");
+}
 }
 
-void insertFront(int value) {
-    if (DequeFull()) {
-        printf("Circular Deque is full.\n");
-    } else {
-        if (DequeEmpty()) {
-            front = rear = 1;
-        } else if (front == 1) {
-            front = n;
-        } else {
-            front = front - 1;
-        }
-        Deque[front] = value;
-        printf("Inserted %d at the front.\n", value);
-    }
+void display(int n)
+{
+int i;
+if (front==rear)
+{
+printf("Queue is Empty\n");
+}
+else
+{
+i= (front+1)%n;
+while (i!=rear)
+{
+
+printf("%d\n",q[i]);
+i=(i+1)%n;
+}
+printf("%d\n",q[i]);
+}
 }
 
-void insertRear(int value) {
-    if (DequeFull()) {
-        printf("Circular Deque is full.\n");
-    } else {
-        if (DequeEmpty()) {
-            front = rear = 1;
-        } else if (rear == n) {
-            rear = 1;
-        } else {
-            rear = rear + 1;
-        }
-        Deque[rear] = value;
-        printf("Inserted %d at the rear.\n", value);
-    }
+void main()
+{
+int ch, x=1,n, item;
+printf("EBY J KAVUNGAL rollno:14\n");
+printf("----Queue Operations----\n");
+printf("Enter the number of elements in the queue\n");
+scanf("%d",&n);
+do
+{
+printf("\nEnter\n 1: enqueue\n 2: dequeue\n 3: display\n");
+scanf("%d",&ch);
+switch (ch)
+{
+case 1:
+{
+enqueue(n);
+break;
+}
+case 2:
+{
+dequeue(n);
+break;
+}
+case 3:
+{
+display(n);
+break;
+}
+default:
+{
+printf("Invalid Choice :C");
+break;
+}
+}
+printf("Do u wanna continue? yes:1 no:0   ");
+scanf("%d",&x);
+if (x==0){printf("Exitted the program..\n");}
+}while (x==1);
 }
 
-void deleteFront() {
-    if (DequeEmpty()) {
-        printf("Circular Deque is empty. Cannot delete from the front.\n");
-    } else {
-        printf("Deleted %d from the front.\n", Deque[front]);
-        if (front == rear) {
-            front = rear = 0;
-        } else if (front == n) {
-            front = 1;
-        } else {
-            front = front + 1;
-        }
-    }
-}
 
-void deleteRear() {
-    if (DequeEmpty()) {
-        printf("Circular Deque is empty. Cannot delete from the rear.\n");
-    } else {
-        printf("Deleted %d from the rear.\n", Deque[rear]);
-        if (front == rear) {
-            front = rear = 0;
-        } else if (rear == 1) {
-            rear = n;
-        } else {
-            rear = rear - 1;
-        }
-    }
-}
-
-void display() {
-    if (DequeEmpty()) {
-        printf("Circular Deque is empty.\n");
-    } else {
-        int i = front;
-        printf("Circular Deque elements: ");
-        do {
-            printf("%d ", Deque[i]);
-            if (i == rear) {
-                break;
-            }
-            if (i == n) {
-                i = 1;
-            } else {
-                i = i + 1;
-            }
-        } while (1);
-        printf("\n");
-    }
-}
-
-int main() {
-    int ch, value;
-     printf("EBY J KAVUNGAL rollno:14\n");
-
-    while (1) {
-        printf("\nCircular Deque Operations:\n");
-        printf("1. Insert at front\n");
-        printf("2. Insert at rear\n");
-        printf("3. Delete from front\n");
-        printf("4. Delete from rear\n");
-        printf("5. Display\n");
-        printf("6. Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &ch);
-
-        switch (ch) {
-            case 1:
-                printf("Enter value to insert at the front: ");
-                scanf("%d", &value);
-                insertFront(value);
-                break;
-            case 2:
-                printf("Enter value to insert at the rear: ");
-                scanf("%d", &value);
-                insertRear(value);
-                break;
-            case 3:
-                deleteFront();
-                break;
-            case 4:
-                deleteRear();
-                break;
-            case 5:
-                display();
-                break;
-            case 6:
-                printf("Exited the program.\n");
-                exit(0);
-
-            default:
-                printf("Invalid choice.\n");
-        }
-    }
-
-    return 0;
-}
