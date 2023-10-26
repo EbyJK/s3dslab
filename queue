@@ -1,0 +1,80 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+void enqueue(int n);
+void dequeue();
+void display();
+int n;
+int front=-1;
+int rear=-1;
+int A[20];
+int item;
+
+void main(){
+        int n,ch,a,i;
+printf("EBY J KAVUNGAL rollno:14\n");
+        printf("Enter size of the queue\n");
+        scanf("%d",&n);
+        do{
+           printf("\n---menu---\n1.Enqueue\n2.Dequeue\n3.Display\n");
+           printf("Enter operation to be performed\n");
+           scanf("%d",&ch);
+           switch(ch){
+              case 1:
+                     enqueue(n);
+                    break;
+               case 2:
+                     dequeue();
+                      break;
+               case 3:
+                     display();
+                      break;
+                default :
+                     printf("Invalid choice\n");
+                     break;}
+    printf("Do you want to continue the program? if yes, enter 0 o.w enter any number\n");
+    scanf("%d",&a);
+    if(a==0)
+          {i=0;}
+      else
+             {printf("Exitted the program..\n");
+              break;}  
+
+ }while(i==0);
+
+
+
+}
+
+void enqueue(int n){
+
+if (rear>n-1){
+printf("queue is full\n");
+}
+else if(rear==-1)
+    {
+        front=0;
+        rear++;
+        printf("Enter the no to queue:");
+        scanf("%d",&A[rear]);}
+else{rear=rear+1;
+ printf("Enter element to queue\n");
+ scanf("%d",&item);
+A[rear]=item;}
+}
+ void dequeue(){
+if(front==rear){printf("queue is empty\n");}
+else{
+     item= A[front];}
+     printf("The deleted element is %d\n",item);
+     front=front+1;
+ }
+
+void display(){
+int x;
+if (front==rear){printf("queue is empty\n");}
+else{x=front;
+     printf("\n");
+while(x<=rear){printf("%d\n",A[x]);
+                x++;
+}}}
