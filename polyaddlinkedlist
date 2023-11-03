@@ -1,0 +1,236 @@
+  //linked list polynomial addition
+
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+int coeff;
+int exp;
+struct node *next;
+};
+struct node *p,*head,*tail,*ptr;
+struct node *q,*head1,*tail1,*ptr1;
+struct node *r,*head2,*tail2,*ptr2;
+//
+void insert1()
+{
+ p=(struct node*)malloc(sizeof(struct node));
+ printf("Enter the data(coefficient & exponent in order)\n");
+ scanf("%d",&p->coeff);
+ scanf("%d",&p->exp);
+ p->next=NULL;
+ if (head==NULL)
+ {
+     head=p;
+     tail=p;
+ }
+ else
+ {
+ tail->next=p;
+ tail=p;    
+ }
+ printf("inserted...\n");
+}
+//
+void insert2(void)
+{
+ q=(struct node*)malloc(sizeof(struct node));
+ printf("Enter the data(coefficient & exponent in order)\n");
+ scanf("%d",&q->coeff);
+ scanf("%d",&q->exp);
+ q->next=NULL;
+ if (head1==NULL)
+ {
+     head1=q;
+     tail1=q;
+ }
+ else
+ {
+ tail1->next=q;
+ tail1=q;    
+ }
+ printf("inserted...\n");
+}
+//
+void display1()
+{
+    ptr=head;
+    //printf("The linked list is\n");
+    while(ptr!=NULL)
+    {
+        printf("%d %d\t",ptr->coeff,ptr->exp);
+        ptr=ptr->next;
+    }
+printf("\n");
+
+}
+//
+void display2()
+{
+    ptr1=head1;
+    //printf("The linked list is\n");
+    while(ptr1!=NULL)
+    {
+        printf("%d %d\t",ptr1->coeff,ptr1->exp);
+        ptr1=ptr1->next;
+    }
+printf("\n");
+
+}
+
+//
+void display3()
+{  
+ 
+    ptr2=head2;
+    printf("The linked list is\n");
+    while(ptr2!=NULL)
+    {
+        printf("%d %d\t",ptr2->coeff,ptr2->exp);
+        ptr2=ptr2->next;
+    }
+printf("\n");
+
+}
+//
+void polyadd(){
+while(p!=NULL && q!=NULL){
+r=(struct node*)malloc(sizeof(struct node));
+if (head2==NULL)
+ {
+     head2=r;
+     tail2=r;
+ }
+ else
+ {
+ tail2->next=r;
+ tail2=r;    
+ }
+         
+if (p->exp>q->exp){printf("inside if\n");
+r->exp=p->exp;
+r->coeff=p->coeff;
+p=p->next;
+
+}
+else if (p->exp<q->exp){printf("inside else if\n");
+r->exp=q->exp;
+r->coeff=q->coeff;
+q=q->next;
+
+}
+else{
+if((p->coeff + q->coeff)!=0){printf("inside same exp\n");
+r->exp=p->exp;
+r->coeff=p->coeff+q->coeff;
+p=p->next;
+q=q->next;
+
+}
+
+}
+
+
+
+
+}
+while(p!=NULL){
+r=(struct node*)malloc(sizeof(struct node));
+if (head2==NULL)
+ {
+     head2=r;
+     tail2=r;
+ }
+ else
+ {
+ tail2->next=r;
+ tail2=r;    
+ }
+r->exp=p->exp;
+r->coeff=p->coeff;
+
+p=p->next;
+}
+while(q!=NULL){
+r=(struct node*)malloc(sizeof(struct node));
+if (head2==NULL)
+ {
+     head2=r;
+     tail2=r;
+ }
+ else
+ {
+ tail2->next=r;
+ tail2=r;    
+ }
+r->exp=q->exp;
+r->coeff=q->coeff;
+
+q=q->next;
+}
+
+   display3();
+}
+//
+
+
+void main(){
+int i,j,ch,x,y;
+int n,m;
+head=NULL;
+head1=NULL;
+head2=NULL;
+
+printf("\nEBY J KAVUNGAL rollno:14\n");
+do{
+
+printf("\n---------Menu---------\n1.Input polynomial\n2.display\n3.Polynomial addition\n4.exit\n----------------------\n");
+printf("Enter choice:\n");
+scanf("%d",&ch);
+switch(ch){
+case 1:
+
+printf("input polynomial 1:\n");
+printf("Enter no of terms:\n");
+scanf("%d",&n);
+for(i=0;i<n;i++){
+insert1();p=head;}
+printf("input polynomial 2:\n");
+printf("Enter no of terms:\n");
+scanf("%d",&m);
+for(j=0;j<m;j++){
+insert2();q=head1;}
+break;
+case 2:
+printf("displaying polynomials:\n");
+printf("poly 1:\n");
+display1();
+printf("poly 2:\n");
+display2();
+break;
+case 3:
+printf("poly addition\n");
+            polyadd();
+break;
+
+case 4:
+                        printf("Exitted program...\n");
+exit(0);
+break;
+default: printf("Invalid choice!..enter new choice\n");
+break;
+
+}
+
+printf("Do you want to continue the program?,if yes, enter 0,o.w enter any number\n");
+scanf("%d",&x);
+if(x==0){
+y=0; }
+else{
+printf("exitted the program..\n");
+break;
+}
+
+
+}while(y==0);
+}
