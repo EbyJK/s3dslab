@@ -1,0 +1,99 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void mergef();
+void merge(int x[], int left, int mid, int right);
+void mergesort(int x[], int left, int right);
+
+void main() {
+    int ch;
+    int x = 1;
+    printf("Eby J kavungal roll no :14\n");
+    while (x == 1) {
+        printf("\n-----MENU-----\n1. merge sort\n2. exit\n");
+        printf("Enter choice:\n");
+        scanf("%d", &ch);
+        switch (ch) {
+            case 1:
+                mergef();
+                break;
+            case 2:
+                x = 0;
+                printf("exited the program.\n");
+                exit(0);
+            default:
+                printf("invalid choice. enter new choice!\n");
+        }
+    }
+}
+
+void mergef() {
+    int n, left, right;
+    printf("enter size of array:\n");
+    scanf("%d", &n);
+    int a[n];
+    
+    // Input array elements
+    printf("Enter array elements:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+
+    left = 0;
+    right = n - 1;
+    mergesort(a, left, right);
+
+    // Print the sorted array
+    printf("Sorted Array:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+}
+
+void mergesort(int x[], int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        mergesort(x, left, mid);
+        mergesort(x, mid + 1, right);
+        merge(x, left, mid, right);
+    }
+}
+
+void merge(int x[], int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+    int temp1[n1], temp2[n2];
+
+    for (int i = 0; i < n1; i++) {
+        temp1[i] = x[left + i];
+    }
+
+    for (int j = 0; j < n2; j++) {
+        temp2[j] = x[mid + 1 + j];
+    }
+
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (temp1[i] <= temp2[j]) {
+            x[k] = temp1[i];
+            i++;
+        } else {
+            x[k] = temp2[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        x[k] = temp1[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        x[k] = temp2[j];
+        j++;
+        k++;
+    }
+}
