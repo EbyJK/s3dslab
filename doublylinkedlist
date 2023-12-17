@@ -1,0 +1,232 @@
+//doubly linked list
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node* next;
+    struct node* prev;
+};
+struct node *p, *head=NULL, *tail=NULL, *ptr;
+void insertend() {
+    p = (struct node*)malloc(sizeof(struct node));
+    printf("Enter the data:\n ");
+    scanf("%d", &p->data);
+    if (head==NULL) {
+        head=p;
+        tail=p;
+        p->next=NULL;
+        p->prev=NULL;
+}
+else {
+        tail->next = p;
+        p->prev=tail;
+    p->next=NULL;
+    tail=p;
+    }
+printf("inserted..\n");
+}
+void insertfront() {
+    p = (struct node*)malloc(sizeof(struct node));
+    printf("Enter the data:\n ");
+    scanf("%d", &p->data);
+    if (head == NULL) {
+        p->next=NULL;
+        p->prev=NULL;
+        tail=p;
+    }
+    else {
+        p->next = head;
+        head->prev = p;
+        p->prev=NULL;
+    }
+    head=p;
+printf("inserted..\n");
+}
+void insertafter() {
+    int item, flag = 0;
+    p = (struct node*)malloc(sizeof(struct node));
+    printf("Enter the Element to insert: ");
+    scanf("%d", &p->data);
+    p->next = NULL;
+    printf("Enter Element to Insert After: ");
+    scanf("%d", &item);
+    ptr = head;
+    while (ptr != NULL) {
+        if (ptr->data != item) {
+            ptr = ptr->next;
+        } else {
+            flag = 1;
+printf("element found.\n");
+            p->next = ptr->next;
+            if (ptr->next != NULL) {
+                ptr->next->prev = p;
+            }
+            p->prev = ptr;
+            ptr->next = p;
+            break;
+        }
+    }
+printf("inserted.\n");
+    if (flag == 0) {
+        printf("Not Found..\n");
+    }
+}
+void insertbefore() {
+    int item, flag = 0;
+    p = (struct node*)malloc(sizeof(struct node));
+    printf("Enter the Element to insert: ");
+    scanf("%d", &p->data);
+    printf("Enter Element to Insert Before: ");
+    scanf("%d", &item);
+    ptr = head;
+    while (ptr != NULL) {
+        if (ptr->data != item) {
+            ptr = ptr->next;
+        } else {
+            flag = 1;
+   printf("item is found:\n");
+            p->prev = ptr->prev;
+            p->next = ptr;
+            if (ptr->prev != NULL) {
+                ptr->prev->next = p;
+            } else {
+                head = p;
+            }
+            ptr->prev = p;
+            break;
+        }
+
+    }
+printf("inserted.\n");
+    if (flag == 0) {
+        printf("Item Not Found\n");
+    }
+}
+
+void display() {
+    ptr = head;
+    printf("The Doubly linked list\n");
+if(ptr==NULL){
+printf("list is empty..\n");
+}
+    else{
+    while (ptr != NULL) {
+        printf("%d\t", ptr->data);
+        ptr = ptr->next;
+    }}
+}
+void deletestart() {
+    if (head == NULL) {
+        printf("Empty List\n");
+    } else {
+        p = head;
+        head = head->next;
+        if (head == NULL) {
+            tail = NULL;
+        }
+    printf("deleted.\n");}
+}
+
+void deleterear() {
+    if (head == NULL) {
+        printf("Empty List\n");
+    } else if (head == tail) {
+        head = NULL;
+        tail = NULL;
+    } else {
+        ptr = head;
+        while (ptr->next != tail) {
+            ptr = ptr->next;
+        }
+        tail = ptr;
+        tail->next = NULL;
+    printf("deleted\n");}
+}
+
+void deletenode() {
+int value;
+int dflag=0;
+printf("Enter the value to delete: ");
+        scanf("%d", &value);
+if (head == NULL) {
+       printf("Empty List\n");
+}
+else if (head->data == value) {
+dflag=1;
+printf("deleted.\n");
+      p = head;
+       head = head->next;
+       if (head == NULL) {
+          tail = NULL;
+       }
+}
+else {
+        ptr = head;
+        while (ptr->next != NULL) {
+      if (ptr->next->data == value) {
+dflag=1;
+printf("deleted\n");
+p = ptr->next;
+ptr->next = p->next;
+if (ptr->next == NULL) {
+  tail = ptr;
+        }
+                break;
+            }
+            ptr = ptr->next;
+        }
+    }
+ if (dflag==0){
+printf("node not found.\n");}
+}
+void deletefront() {
+    if (head == NULL) {
+        printf("Empty List\n");
+    } else {
+        p = head;
+        head = head->next;
+        if (head != NULL) {
+            head->prev = NULL;
+        } else {
+            tail = NULL;
+        }
+        free(p);
+printf("deleted\n");    
+}
+}
+void main() {
+    int ch, value;
+    head = NULL;
+    printf("EBY J KAVUNGAL rollno:14\n");
+    while (1) {
+        printf("\nMain Menu\n");
+        printf("1. Insert At End\n2. Insert At Front\n3. Insert After a Node\n4. Delete Front\n5. Delete At End\n6. Delete Specified Node\n7. Display\n8. Exit\n");
+        printf("Enter your choice (1-8):\n ");
+        scanf("%d", &ch);
+
+        if (ch == 1) {
+            insertend();
+        } else if (ch == 2) {
+            insertfront();
+        } else if (ch == 3) {
+            insertafter();
+        } else if (ch == 7) {
+            display();
+        } else if (ch == 4) {
+            deletefront();
+        } else if (ch == 5) {
+            deleterear();
+        } else if (ch == 6) {
+            deletenode();
+        } else if (ch == 8) {
+            printf("Exited the program..\n");
+            exit(0);
+        } else {
+            printf("Invalid choice.... Try Again!\n");
+        }
+
+        printf("\n");
+    }
+}
