@@ -1,0 +1,66 @@
+//heapsort
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void heapsort(int a[],int N);
+void heapify(int a[],int M,int P);
+
+
+void main(){
+int n;
+int b[15];
+printf("Eby j kavungal rollno:14\n");
+printf("Enter size of array\n");
+scanf("%d",&n);
+printf("Enter elements to the array\n");
+for(int z=0;z<n;z++){
+scanf("%d",&b[z]);
+}
+heapsort(b,n);
+printf("Sorted array is:\n");
+for(int h=0;h<n;h++){
+printf("%d ",b[h]);
+}
+printf("\n");
+
+}
+void heapsort(int a[],int N){
+int temp1;
+int i;
+        for(i=(N/2)-1;i>=0;i--){
+heapify(a,N,i);
+
+}
+for(i=N-1;i>=0;i--){
+//swap(a[0],a[i]);
+temp1=a[0];
+a[0]=a[i];
+a[i]=temp1;
+heapify(a,i,0);
+
+}
+}
+void heapify(int a[],int M,int P){
+int temp2;
+int largest=P;
+int left= 2*P+1;
+int right=2*P+2;
+if((a[left]>a[largest])&&(left<M)){
+
+largest=left;
+}
+if((a[right]>a[largest]) && (right<M)){
+largest=right;
+
+}
+if(largest!=P){
+//swap(a[P],a[largest]);
+heapify(a,M,largest);
+temp2=a[P];
+a[P]=a[largest];
+a[largest]=temp2;
+}
+
+}
