@@ -1,0 +1,147 @@
+ //linkedlist stack and queue
+
+#include<stdio.h>
+#include <stdlib.h>
+struct node
+{
+  int data;
+  struct node *next;
+};
+struct node *top=NULL,*s,*front=NULL,*rear=NULL,*q;
+void push(){
+s=(struct node*)malloc(sizeof(struct node));
+printf("Enter the Element to Enter : ");
+scanf("%d",&s->data);
+if(top==NULL){
+s->next=NULL;
+}
+else{
+s->next=top;
+}
+top=s;
+}
+void pop(){
+if(top==NULL){
+printf("Stack Empty\n");
+}
+else{
+printf("Popped Element is: %d\n",top->data);
+top=top->next;
+}
+}
+void StackDisplay(){
+struct node *i;
+s=(struct node*)malloc(sizeof(struct node));
+i=top;
+if(top==NULL){
+printf("Stack Empty\n");
+}
+else{
+printf("Elements in Stack are:\n");
+while(i!=NULL){
+printf("%d\t",i->data);
+i=i->next;
+}
+}
+printf("\n\n");
+}
+void Enqueue(){
+q=(struct node*)malloc(sizeof(struct node));
+printf("Enter the element to be added to the queue : ");
+scanf("%d",&q->data);
+q->next=NULL;
+if(rear==NULL&&front==NULL){
+front=q;
+rear=q;
+}
+else{
+rear->next=q;
+rear=q;
+}
+}
+void Dequeue() {
+    if (front == NULL) {
+        printf("Empty queue:\n");
+    } else {
+        printf("Dequed Element : %d\n",front->data);
+        front = front->next;
+        if (front == NULL) {
+            rear = NULL;
+        }
+    }
+}
+void QueueDisplay() {
+    struct node *ptr;
+    ptr = front;
+    printf("Queue\n");
+    while (ptr != NULL) {
+        printf("%d\t", ptr->data);
+        ptr = ptr->next;
+    }
+printf("\n\n");
+}
+void stackmenu(){
+int sch;
+while(1){
+printf("\tStack Menu\n");
+printf("1. Push\n2. Pop\n3. Display\n4. Return to Main Menu\n");
+printf("Enter your choice: ");
+scanf("%d",&sch);
+if(sch==1){
+push();
+}
+else if(sch==2){
+pop();
+}
+else if(sch==3){
+StackDisplay();
+}
+else if(sch==4){
+return;
+}
+else {
+printf("Invalid Input.... Try Again");
+}
+}
+}
+void queuemenu(){
+int qch;
+while(1){
+printf("\tQueue Menu:\n");
+printf("1. Enqueue\n2. Dequeue\n3. Display\n4. Return to Main Menu\n");
+printf("Enter your choice: ");
+scanf("%d",&qch);
+if(qch==1){
+Enqueue();
+}
+else if(qch==2){
+Dequeue(); }
+else if(qch==3){
+QueueDisplay();}
+else if(qch==4){
+return; }
+else {
+printf("Invalid Input.... Try Again"); }
+}
+}
+void main(){
+int ch;
+printf("EBY  J KAVUNGAL rollno:14\n");
+while(1)
+{
+printf("\tMain Menu\n");
+printf("1. Stack\n2. Queue\n3. Exit\n");
+printf("Enter your choice: ");
+scanf("%d",&ch);
+if(ch==1){
+stackmenu(); }
+else if(ch==2){
+queuemenu(); }
+else if(ch==3){
+printf("Exitted the program...\n");
+exit(0);}
+else {
+printf("Invalid Input..\n"); }
+printf("\n\n");
+}
+}
