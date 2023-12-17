@@ -1,0 +1,61 @@
+// quick sort
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void quicksort(int a[25],int l,int r);
+
+void main(){
+int n,i,temp;
+int b[25];
+ 
+printf("Eby j kavungal rollno:14\n");
+printf("Enter size of array\n");
+scanf("%d",&n);
+printf("Enter values to the array\n");
+for(int i=0;i<n;i++){
+scanf("%d",&b[i]);}
+
+quicksort(b,0,n-1);
+printf("Sorted array is:\n");
+for(int e=0;e<n;e++){
+printf("%d ",b[e]);
+}
+printf("\n");
+}
+void quicksort(int a[25],int l,int r){
+int j,k,pivot,temp,e;
+if(l<r){
+pivot=l;
+j=l;
+k=r;
+
+while(j<k){
+while((a[j]<a[pivot]) && (j<r) ){
+j=j+1;
+
+}
+while(a[k]>a[pivot]){
+
+k=k-1;
+
+}
+if(j<k){
+temp=a[j];
+a[j]=a[k];
+a[k]=temp;
+
+
+
+
+}}
+temp=a[pivot];
+a[pivot]=a[k];
+a[k]=temp;
+quicksort(a,l,k-1);
+quicksort(a,k+1,r);
+
+}
+
+}
+
