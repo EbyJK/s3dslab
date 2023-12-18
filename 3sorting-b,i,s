@@ -1,0 +1,140 @@
+#include<stdio.h>
+#include<stdlib.h>
+void bubble();
+void insertion();
+void selection();
+void main(){
+int ch;
+printf("EBY J KAVUNGAL rollno:14\n");
+while(1){
+printf("\n-----MENU-----\n1.bubble sort\n2.insertion sort\n3.selection sort\n4.exit\n");
+printf("Enter choice:\n");
+scanf("%d",&ch);
+switch(ch){
+case 1: bubble();
+break;
+case 2: insertion();
+break;
+case 3: selection();
+break;
+case 4: printf("Exitted the program.\n");
+exit(0);
+default: printf("inavlid choice. enter new choice.\n");
+
+
+}
+}
+
+}
+void bubble(){
+int b[10];
+int n,i,j,temp;
+printf("Enter size of array: ");
+scanf("%d",&n);
+printf("Enter array elements: \n");
+for(i=0;i<n;i++){
+scanf("%d",&b[i]);
+
+}
+for(i=0;i<n-1;i++){
+for(j=0;j<n-i-1;j++){
+if(b[j]>b[j+1]){
+temp=b[j];
+b[j]=b[j+1];
+b[j+1]=temp;
+
+}
+
+
+}
+
+
+}
+printf("Sorted array is:\n");
+for(i=0;i<n;i++){
+printf("%d ",b[i]);
+
+}
+
+
+
+
+
+}
+void insertion(){
+   int a[10];
+   int n,i,j,key;
+   printf("Enter size of array: ");
+   scanf("%d",&n);
+    printf("enter array elements: \n");
+     for(i=0;i<n;i++){
+scanf("%d",&a[i]);
+
+}
+for(i=1;i<n;i++){
+key=a[i];
+j=i-1;
+while((j>=0) && (key<a[j]) ){
+a[j+1]=a[j];
+j=j-1;
+
+
+}
+a[j+1]=key;
+
+}
+printf("Sorted array is:\n");
+for(i=0;i<n;i++){
+printf("%d ",a[i]);
+
+
+}
+printf("\n");
+   
+
+
+}
+
+
+void selection() {
+    int c[10];
+    int n, i, x;
+    int j = 0, k, temp;
+    int min_index;
+
+ 
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+ 
+    printf("Enter array elements:\n");
+    for (i = 0; i < n; i++) {
+        scanf("%d", &c[i]);
+    }
+
+   
+    while (j < n - 1) {
+        min_index = j;
+        k = j + 1;
+       
+        while (k < n) {
+            if (c[k] < c[min_index]) {
+                min_index = k;
+            }
+            k++;
+        }
+
+       
+        temp = c[min_index];
+        c[min_index] = c[j];
+        c[j] = temp;
+
+        j++;
+    }
+
+ 
+    printf("Sorted array: ");
+    for (x = 0; x < n; x++) {
+        printf("%d ", c[x]);
+    }
+}
